@@ -6,7 +6,7 @@ nCh = length(x);
 indices = 1:length(locs);
 indices = indices(x);
 
-x = [locs(indices).X ]'; % Gets the X,Y, and Z values from locs file
+x = [locs(indices).X ]'; 
 y = [locs(indices).Y ]';
 z = [locs(indices).Z ]';
 
@@ -27,7 +27,7 @@ X = R2.*cos(TH);
 Y = R2.*sin(TH);
 
 mass = mean(vertices);
-diffvert = bsxfun(@minus, vertices, mass); % originally uses bst_bsxfun but only for older Matlab versions
+diffvert = bsxfun(@minus, vertices, mass); 
 R0 = mean(sqrt(sum(diffvert.^2, 2)));
 % Optimization
 vec0 = [mass,R0];
@@ -38,10 +38,8 @@ HeadCenter = minn(1:end-1); % 3x1
 coordC = bsxfun(@minus, vertices, HeadCenter);
 coordC = bsxfun(@rdivide, coordC, sqrt(sum(coordC.^2,2)));
 coordC = bsxfun(@rdivide, coordC, sqrt(sum(coordC.^2,2)));
-% Tesselation of the sensor array
-faces  = convhulln(coordC);
 
-%% Remove unnecessary triangles...
+faces  = convhulln(coordC);
 
 % Get border of the representation
 border = convhull(X,Y);
